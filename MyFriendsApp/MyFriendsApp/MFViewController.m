@@ -21,23 +21,47 @@
 {
     [super viewDidLoad];
     if (self.displayPerson != nil) {
-        [self writeSelectedToArray];
+        [self loadSelected];
     }else{
-        [self writeDataToTmpDataArray];
+        [self loadData];
     }
-    
-    [self plotPositions];
    
 }
+-(void)loadSelected{
+    dataArray = [NSMutableArray new];
+    [dataArray addObject:displayPerson];
+    [self plotPositions];
+}
+-(void)loadData{
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    [dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN] forKey:MF_TOKEN];
+    
+    [[MFRequest alloc] do:@"allFriends" withParams:dict onSuccess:^(NSDictionary *result) {
+        NSLog(@"%@", result);
+        if ([[result valueForKey:@"errors"] count] < 1) {
+            dataArray = [NSMutableArray new];
+            NSArray *arr = [result objectForKey:@"friends"];
+            for (NSDictionary *object in arr) {
+                if ([object valueForKey:@"latitude"]!=[NSNull null] && [object valueForKey:@"longitude"]!=[NSNull null]) {
+                    NSLog(@"%f",[[object valueForKey:@"latitude"] floatValue]);
+                    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[object valueForKey:@"latitude"] floatValue], [[object valueForKey:@"longitude"] floatValue]);
+                    MFPerson *person = [[MFPerson alloc] initWithName:[object valueForKey:@"name"] email:[object valueForKey:@"email"] coordinate:coord];
+                    [dataArray addObject:person];
+                }
+            }
 
+            [self plotPositions];
+        }
+        
+    } onFailure:^(NSDictionary *result) {
+        NSLog(@"%@", result);
+        
+    }];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     
-}
-
-- (IBAction)inviteButtonClick:(id)sender {
-    [self performSegueWithIdentifier:@"invite" sender:self];
 }
 
 - (IBAction)menuButtonClick:(id)sender {
@@ -46,8 +70,11 @@
 
 - (void)plotPositions{
   
-    for (MFPerson *person in tmpDataArray) {
-        [_mapView addAnnotation:person];
+    for (MFPerson *person in dataArray) {
+        if (person.coordinate.latitude) {
+            [_mapView addAnnotation:person];
+        }
+        
     }
     CLLocationCoordinate2D startCoord;
     if (displayPerson != nil) {

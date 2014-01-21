@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0FB06E188C1CD10050B8CE /* MFRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0FB06D188C1CD10050B8CE /* MFRequest.m */; };
 		1A8582B4183A3534009BB47B /* MFFriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8582B3183A3534009BB47B /* MFFriendsListViewController.m */; };
 		1A8582B8183A3635009BB47B /* MFSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8582B7183A3635009BB47B /* MFSettingsViewController.m */; };
 		1A8582BB183A3909009BB47B /* MFFriendsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8582BA183A3909009BB47B /* MFFriendsCell.m */; };
@@ -43,6 +44,10 @@
 		1A905114180F12A00041C68E /* arrest.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A905113180F12A00041C68E /* arrest.png */; };
 		1A905116180F14090041C68E /* greenDot.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A905115180F14090041C68E /* greenDot.png */; };
 		1A90511C180F15830041C68E /* MFInvitationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A90511B180F15830041C68E /* MFInvitationViewController.m */; };
+		1AB7E00C188EA7CC000FA403 /* MFRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB7E00B188EA7CC000FA403 /* MFRegisterViewController.m */; };
+		1AB7E010188EBAF9000FA403 /* MFConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB7E00F188EBAF9000FA403 /* MFConfirmViewController.m */; };
+		1AB7E014188EDEE2000FA403 /* MFRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB7E013188EDEE2000FA403 /* MFRequestsViewController.m */; };
+		1AB7E018188EDF09000FA403 /* MFMyInvitationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB7E017188EDF09000FA403 /* MFMyInvitationsViewController.m */; };
 		1ADB33771832B084004EAE11 /* MFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB33761832B084004EAE11 /* MFLoginViewController.m */; };
 		1ADB3386183404FC004EAE11 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB3383183404FC004EAE11 /* IIViewDeckController.m */; };
 		1ADB3387183404FC004EAE11 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB3385183404FC004EAE11 /* WrapController.m */; };
@@ -62,6 +67,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A0FB06C188C1CD10050B8CE /* MFRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFRequest.h; sourceTree = "<group>"; };
+		1A0FB06D188C1CD10050B8CE /* MFRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRequest.m; sourceTree = "<group>"; };
 		1A8582B2183A3534009BB47B /* MFFriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFFriendsListViewController.h; sourceTree = "<group>"; };
 		1A8582B3183A3534009BB47B /* MFFriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFFriendsListViewController.m; sourceTree = "<group>"; };
 		1A8582B6183A3635009BB47B /* MFSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSettingsViewController.h; sourceTree = "<group>"; };
@@ -108,6 +115,14 @@
 		1A905115180F14090041C68E /* greenDot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenDot.png; sourceTree = "<group>"; };
 		1A90511A180F15830041C68E /* MFInvitationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFInvitationViewController.h; sourceTree = "<group>"; };
 		1A90511B180F15830041C68E /* MFInvitationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFInvitationViewController.m; sourceTree = "<group>"; };
+		1AB7E00A188EA7CC000FA403 /* MFRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFRegisterViewController.h; sourceTree = "<group>"; };
+		1AB7E00B188EA7CC000FA403 /* MFRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRegisterViewController.m; sourceTree = "<group>"; };
+		1AB7E00E188EBAF9000FA403 /* MFConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFConfirmViewController.h; sourceTree = "<group>"; };
+		1AB7E00F188EBAF9000FA403 /* MFConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFConfirmViewController.m; sourceTree = "<group>"; };
+		1AB7E012188EDEE2000FA403 /* MFRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFRequestsViewController.h; sourceTree = "<group>"; };
+		1AB7E013188EDEE2000FA403 /* MFRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRequestsViewController.m; sourceTree = "<group>"; };
+		1AB7E016188EDF09000FA403 /* MFMyInvitationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFMyInvitationsViewController.h; sourceTree = "<group>"; };
+		1AB7E017188EDF09000FA403 /* MFMyInvitationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFMyInvitationsViewController.m; sourceTree = "<group>"; };
 		1ADB33751832B084004EAE11 /* MFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLoginViewController.h; sourceTree = "<group>"; };
 		1ADB33761832B084004EAE11 /* MFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLoginViewController.m; sourceTree = "<group>"; };
 		1ADB3382183404FC004EAE11 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
@@ -277,6 +292,8 @@
 				1ADB338D1834122F004EAE11 /* MFMenuCell.m */,
 				1A8582B9183A3909009BB47B /* MFFriendsCell.h */,
 				1A8582BA183A3909009BB47B /* MFFriendsCell.m */,
+				1A0FB06C188C1CD10050B8CE /* MFRequest.h */,
+				1A0FB06D188C1CD10050B8CE /* MFRequest.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -284,6 +301,10 @@
 		1A905117180F15130041C68E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1AB7E015188EDEE6000FA403 /* MyInvitationsViewController */,
+				1AB7E011188EDEC1000FA403 /* RequestsViewController */,
+				1AB7E00D188EBAE3000FA403 /* ConfirmViewController */,
+				1AB7E009188EA7A8000FA403 /* RegisterViewController */,
 				1A8582B5183A361D009BB47B /* SettingsViewController */,
 				1A8582B1183A3507009BB47B /* FriendsListViewController */,
 				1ADB33881834056A004EAE11 /* MenuViewController */,
@@ -310,6 +331,42 @@
 				1A90511B180F15830041C68E /* MFInvitationViewController.m */,
 			);
 			name = InviteViewController;
+			sourceTree = "<group>";
+		};
+		1AB7E009188EA7A8000FA403 /* RegisterViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1AB7E00A188EA7CC000FA403 /* MFRegisterViewController.h */,
+				1AB7E00B188EA7CC000FA403 /* MFRegisterViewController.m */,
+			);
+			name = RegisterViewController;
+			sourceTree = "<group>";
+		};
+		1AB7E00D188EBAE3000FA403 /* ConfirmViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1AB7E00E188EBAF9000FA403 /* MFConfirmViewController.h */,
+				1AB7E00F188EBAF9000FA403 /* MFConfirmViewController.m */,
+			);
+			name = ConfirmViewController;
+			sourceTree = "<group>";
+		};
+		1AB7E011188EDEC1000FA403 /* RequestsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1AB7E012188EDEE2000FA403 /* MFRequestsViewController.h */,
+				1AB7E013188EDEE2000FA403 /* MFRequestsViewController.m */,
+			);
+			name = RequestsViewController;
+			sourceTree = "<group>";
+		};
+		1AB7E015188EDEE6000FA403 /* MyInvitationsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1AB7E016188EDF09000FA403 /* MFMyInvitationsViewController.h */,
+				1AB7E017188EDF09000FA403 /* MFMyInvitationsViewController.m */,
+			);
+			name = MyInvitationsViewController;
 			sourceTree = "<group>";
 		};
 		1ADB33741832B06F004EAE11 /* LoginViewController */ = {
@@ -448,14 +505,19 @@
 				1A8582B4183A3534009BB47B /* MFFriendsListViewController.m in Sources */,
 				1ADB338B18340584004EAE11 /* MFMenuViewController.m in Sources */,
 				1ADB3387183404FC004EAE11 /* WrapController.m in Sources */,
+				1AB7E010188EBAF9000FA403 /* MFConfirmViewController.m in Sources */,
 				1A8582B8183A3635009BB47B /* MFSettingsViewController.m in Sources */,
+				1AB7E014188EDEE2000FA403 /* MFRequestsViewController.m in Sources */,
 				1A8582BB183A3909009BB47B /* MFFriendsCell.m in Sources */,
+				1A0FB06E188C1CD10050B8CE /* MFRequest.m in Sources */,
 				1ADB3386183404FC004EAE11 /* IIViewDeckController.m in Sources */,
 				1A9050DD180EEC3B0041C68E /* main.m in Sources */,
 				1A9050E7180EEC3B0041C68E /* MFViewController.m in Sources */,
 				1A9050E1180EEC3B0041C68E /* MFAppDelegate.m in Sources */,
+				1AB7E00C188EA7CC000FA403 /* MFRegisterViewController.m in Sources */,
 				1A905110180EEFA40041C68E /* MFPerson.m in Sources */,
 				1ADB33771832B084004EAE11 /* MFLoginViewController.m in Sources */,
+				1AB7E018188EDF09000FA403 /* MFMyInvitationsViewController.m in Sources */,
 				1ADB338E1834122F004EAE11 /* MFMenuCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,10 +645,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyFriendsApp/MyFriendsApp-Prefix.pch";
 				INFOPLIST_FILE = "MyFriendsApp/MyFriendsApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -596,10 +661,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyFriendsApp/MyFriendsApp-Prefix.pch";
 				INFOPLIST_FILE = "MyFriendsApp/MyFriendsApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

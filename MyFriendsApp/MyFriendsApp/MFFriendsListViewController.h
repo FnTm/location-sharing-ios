@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MFFriendsListViewController : UIViewController<UINavigationBarDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>{
+@interface MFFriendsListViewController : UIViewController<UINavigationBarDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>{
     IBOutlet UITableView *friendsTableView;
+    int deleteItem;
 }
+@property(nonatomic, strong)NSMutableArray *dataArray;
+@property (weak, nonatomic) IBOutlet UILabel *noDataLabel;
 - (IBAction)menuButtonClick:(id)sender;
+- (IBAction)editClick:(id)sender;
 
 @end

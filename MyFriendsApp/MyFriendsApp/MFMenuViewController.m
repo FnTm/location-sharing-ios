@@ -10,6 +10,7 @@
 #import "MFMenuViewController.h"
 #import "MFMenuCell.h"
 #import "IIViewDeckController.h"
+#import "MFRequest.h"
 
 @interface MFMenuViewController ()
 
@@ -76,16 +77,30 @@
         self.viewDeckController.centerController = center;
         [self.viewDeckController toggleLeftView];
         
-    }else if (indexPath.row == 3) {
+    }else if (indexPath.row == 5) {
         
         UINavigationController *center =[[self storyboard] instantiateViewControllerWithIdentifier:@"settingsNavigation"];
         self.viewDeckController.centerController = center;
         [self.viewDeckController toggleLeftView];
         
+    }else if (indexPath.row == 3) {
+        
+        UINavigationController *center =[[self storyboard] instantiateViewControllerWithIdentifier:@"myInvitationsNavigation"];
+        self.viewDeckController.centerController = center;
+        [self.viewDeckController toggleLeftView];
+        
     }else if (indexPath.row == 4) {
-        [self performSegueWithIdentifier:@"logoutSegue" sender:self];
+        
+        UINavigationController *center =[[self storyboard] instantiateViewControllerWithIdentifier:@"invitationsNavigation"];
+        self.viewDeckController.centerController = center;
+        [self.viewDeckController toggleLeftView];
+        
+    }else if (indexPath.row == 6) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Vai tiešām vēlaties izlogoties?" delegate:self cancelButtonTitle:@"Atcelt" otherButtonTitles:@"Labi", nil];
+        [alert show];
+        
     }
-    
+
     
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -113,6 +128,38 @@
 }
 -(void)loadMenuItems{
     menuItems = [NSMutableArray new];
+    
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        [self logoutClick];
+    }
+}
+-(void)logoutClick{
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN]==nil) {
+        [self performSegueWithIdentifier:@"logoutSegue" sender:self];
+        
+    }else{
+        NSMutableDictionary *dict = [NSMutableDictionary new];
+        [dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN] forKey:MF_TOKEN];
+        
+        [[MFRequest alloc] do:@"logout" withParams:dict onSuccess:^(NSDictionary *result) {
+            NSLog(@"%@", result);
+         
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:MF_TOKEN];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            NSLog(@"top:%@", [[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN]);
+            if ([result valueForKey:@"errors"]) {
+                NSLog(@"kļūda");
+            }
+            [self performSegueWithIdentifier:@"logoutSegue" sender:self];
+        } onFailure:^(NSDictionary *result) {
+            NSLog(@"%@", result);
+            
+        }];
+
+    }
     
 }
 

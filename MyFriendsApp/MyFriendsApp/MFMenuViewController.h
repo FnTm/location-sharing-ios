@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MFViewController.h"
 
-@interface MFMenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
+@interface MFMenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>{
 
     MFViewController *mainViewController;
     NSMutableArray *menuItems;

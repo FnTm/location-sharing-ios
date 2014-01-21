@@ -28,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,12 +43,30 @@
         alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Bad input data!" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
         
     }else{
-        alert = [[UIAlertView alloc] initWithTitle:@"Invitation has been sent!" message:@"Invitation has been sent!" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
-        _textField.text = @"";
+        [self sendData];
+        
+       // alert = [[UIAlertView alloc] initWithTitle:@"Invitation has been sent!" message:@"Invitation has been sent!" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+       // _textField.text = @"";
     }
     [alert show];
 }
+-(void)sendData{
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    [dict setObject:_textField.text forKey:@"email"];
+    [dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN] forKey:MF_TOKEN];
+    
+    [[MFRequest alloc] do:@"invite" withParams:dict onSuccess:^(NSDictionary *result) {
+        NSLog(@"%@", result);
+        if ([[result valueForKey:@"success"] integerValue] == 1) {
+            
+        }
+        
+    } onFailure:^(NSDictionary *result) {
+        NSLog(@"%@", result);
+        
+    }];
 
+}
 - (IBAction)menuButtonClick:(id)sender {
     [self.viewDeckController toggleLeftView];
 }

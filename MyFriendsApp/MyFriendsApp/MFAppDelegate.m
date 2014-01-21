@@ -7,7 +7,8 @@
 //
 
 #import "MFAppDelegate.h"
-
+#import "IIViewDeckController.h"
+#import "MFMenuViewController.h"
 
 
 
@@ -15,7 +16,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
+
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN]){
+        NSLog(@"Logged in with token:%@", [[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN]);
+        
+        self.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mainViewController"];
+        UIStoryboard *myStoryBoard =  [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UINavigationController *center =[myStoryBoard instantiateViewControllerWithIdentifier:@"mainNavigation"];
+        
+        MFMenuViewController *menuController = [myStoryBoard instantiateViewControllerWithIdentifier:@"Left"];
+        
+        IIViewDeckController *deckController = (IIViewDeckController *)self.window.rootViewController;
+        deckController.centerController = center;
+        deckController.leftController = menuController;
+        deckController.elastic = NO;
+        deckController.rotationBehavior = IIViewDeckRotationKeepsViewSizes;
+    }
    
     return YES;
 }

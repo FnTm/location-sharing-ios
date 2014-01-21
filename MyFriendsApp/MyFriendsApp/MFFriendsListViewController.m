@@ -32,7 +32,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[self writeDataToTmpDataArray];
+    
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    [dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN] forKey:MF_TOKEN];
+    
+    [[MFRequest alloc] do:@"allFriends" withParams:dict onSuccess:^(NSDictionary *result) {
+        NSLog(@"%@", result);
+        self.dataArray = [result objectForKey:@"friends"];
+        NSLog(@"dataArray:%@", self.dataArray);
+        [friendsTableView reloadData];
+    } onFailure:^(NSDictionary *result) {
+        NSLog(@"%@", result);
+        
+    }];
+
+    
+	//[self writeDataToTmpDataArray];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,23 +60,84 @@
     [self.viewDeckController toggleLeftView];
 }
 
+- (IBAction)editClick:(id)sender {
+    if ([friendsTableView isEditing]) {
+        [friendsTableView setEditing:NO];
+    }else{
+        [friendsTableView setEditing:YES];
+    }
+    
+}
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"MFFriendsCell";
     MFFriendsCell *cell = (MFFriendsCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    MFPerson *person = [tmpDataArray objectAtIndex:indexPath.row];
-    cell.nameLabel.text = person.name;
-    cell.emailLabel.text = person.email;
+    cell.nameLabel.text = [[self.dataArray objectAtIndex:indexPath.row] valueForKey:@"name"];
+    cell.emailLabel.text = [[self.dataArray objectAtIndex:indexPath.row] valueForKey:@"email"];
     
     return cell;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [tmpDataArray count];
+    if ([self.dataArray count]<1) {
+        [self.noDataLabel setHidden:NO];
+    }else{
+        [self.noDataLabel setHidden:YES];
+    }
+    return [self.dataArray count];
 }
+- (void)tableView: (UITableView *)tableView commitEditingStyle: (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath: (NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Uzmanību" message:@"Vai tiešām vēlaties pārtraukt draudzību?" delegate:self cancelButtonTitle:@"Atcelt" otherButtonTitles:@"Jā", nil];
+        [alert show];
+        deleteItem = indexPath.row;
+        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.selectedPerson =[tmpDataArray objectAtIndex:indexPath.row];
     
-    [self performSegueWithIdentifier:@"selectSegue" sender:self];
     
+    if ([[self.dataArray objectAtIndex:indexPath.row] valueForKey:@"latitude"]!=[NSNull null] && [[self.dataArray objectAtIndex:indexPath.row] valueForKey:@"longitude"]!=[NSNull null]) {
+        MFPerson *person = [MFPerson new];
+        person.name = [[self.dataArray objectAtIndex:indexPath.row] valueForKey:@"name"];
+        person.email = [[self.dataArray objectAtIndex:indexPath.row] valueForKey:@"email"];
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[[self.dataArray objectAtIndex:indexPath.row] valueForKey:@"latitude"] floatValue], [[[self.dataArray objectAtIndex:indexPath.row] valueForKey:@"longitude"] floatValue]);
+        person.coordinate = coord;
+        
+        self.selectedPerson = person;
+        
+        [self performSegueWithIdentifier:@"selectSegue" sender:self];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Diemžēl šai personai nevar noteikt atrasšanās vietu" delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    
+    
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        [self deleteFriendship];
+    }
+}
+-(void)deleteFriendship{
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    [dict setObject:[[self.dataArray objectAtIndex:deleteItem] valueForKey:@"id"] forKey:@"id"];
+    NSDictionary *dict2 = [NSDictionary dictionaryWithObject:[[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN] forKey:MF_TOKEN];
+    [dict setObject:dict2 forKey:@"token"];
+    
+    [[MFRequest alloc] do:@"deleteFriendship" withParams:dict onSuccess:^(NSDictionary *result) {
+        NSLog(@"%@", result);
+        if ([[result valueForKey:@"success"] integerValue]==1) {
+            [self.dataArray removeObjectAtIndex:deleteItem];
+            [friendsTableView reloadData];
+        }
+    } onFailure:^(NSDictionary *result) {
+        NSLog(@"%@", result);
+        
+    }];
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     UIStoryboard *myStoryBoard =  [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -78,50 +154,5 @@
     MFViewController *viewController = (MFViewController*)[center.viewControllers objectAtIndex:0];
     viewController.displayPerson = self.selectedPerson;
 }
--(void)writeDataToTmpDataArray{
-    tmpDataArray = [[NSMutableArray alloc] init];
-    
-    MFPerson *person = [MFPerson new];
-    
-    person.name = @"Aigars Mališevs";
-    person.email = @"aigarsmalisevs@gmail.com";
-    CLLocationCoordinate2D cord;
-    cord.latitude = 56.930323;
-    cord.longitude = 24.015416;
-    person.coordinate = cord;
-    [tmpDataArray addObject:person];
-    
-    person = [MFPerson new];
-    person.name = @"Aigars Znotiņš";
-    person.email = @"aigars.znotins@gmail.com";
-    cord.latitude = 57.075629;
-    cord.longitude = 24.334524;
-    person.coordinate =cord;
-    [tmpDataArray addObject:person];
-    
-    person = [MFPerson new];
-    person.name = @"Klāvs Taube";
-    person.email = @"klavs.taube@gmail.com";
-    cord.latitude = 56.950670;
-    cord.longitude = 24.103698;
-    person.coordinate = cord;
-    [tmpDataArray addObject:person];
-    
-    person = [MFPerson new];
-    person.name = @"Jānis Pūgulis";
-    person.email = @"janis.pugulis@gmail.com";
-    cord.latitude = 56.923923;
-    cord.longitude = 24.063621;
-    person.coordinate = cord;
-    [tmpDataArray addObject:person];
-    
-    person = [MFPerson new];
-    person.name = @"Jānis Peisenieks";
-    person.email = @"janis@peisenieks.lv";
-    cord.latitude = 56.969416;
-    cord.longitude = 24.122329;
-    person.coordinate = cord;
-    [tmpDataArray addObject:person];
-    
-}
+
 @end

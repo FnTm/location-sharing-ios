@@ -16,5 +16,7 @@
 
 
 - (IBAction)loginClick:(id)sender;
+- (IBAction)registerClick:(id)sender;
+- (IBAction)backgroundClick:(id)sender;
 
 @end

@@ -13,6 +13,7 @@
 
 @interface MFViewController : UIViewController<MKMapViewDelegate, UINavigationBarDelegate, UINavigationControllerDelegate>{
     NSMutableArray *tmpDataArray;
+    NSMutableArray *dataArray;
 }
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property(nonatomic, strong) MFPerson *displayPerson;

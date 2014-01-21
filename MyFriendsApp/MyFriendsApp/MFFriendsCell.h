@@ -11,5 +11,7 @@
 @interface MFFriendsCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+@property (nonatomic, weak) IBOutlet UIButton *denyButton;
+@property (nonatomic, weak) IBOutlet UIButton *acceptButton;
 
 @end

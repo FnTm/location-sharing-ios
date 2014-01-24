@@ -346,7 +346,7 @@
                                 <rect key="frame" x="28" y="36" width="265" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" id="VYC-rx-yw8">
                                 <rect key="frame" x="28" y="74" width="265" height="30"/>
@@ -806,7 +806,7 @@
                                         <rect key="frame" x="25" y="77" width="270" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                         <connections>
                                             <outlet property="delegate" destination="Qfo-i9-NvX" id="OK1-wV-T6a"/>
                                         </connections>
@@ -947,7 +947,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2Xo-x1-V4L"/>
+        <segue reference="jPi-cK-AdT"/>
         <segue reference="w8F-as-Cu1"/>
     </inferredMetricsTieBreakers>
 </document>

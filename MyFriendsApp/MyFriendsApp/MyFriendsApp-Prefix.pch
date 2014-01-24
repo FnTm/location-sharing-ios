@@ -14,6 +14,8 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "MFRequest.h"
+    #import "Spinner.h"
+    #import "MFAppDelegate.h"
 
     #define MF_TOKEN @"authentication_token"
 #endif

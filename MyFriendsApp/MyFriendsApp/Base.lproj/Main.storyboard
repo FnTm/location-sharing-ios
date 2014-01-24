@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--View Controller - My Friends App-->
+        <!--View Controller - Location Sharing-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController restorationIdentifier="Center" storyboardIdentifier="Center" id="vXZ-lx-hvc" customClass="MFViewController" sceneMemberID="viewController">
@@ -23,11 +23,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="My Friends App" id="plV-pS-UVl">
+                    <navigationItem key="navigationItem" title="Location Sharing" id="plV-pS-UVl">
                         <barButtonItem key="backBarButtonItem" title="Back" id="neC-hO-1gf"/>
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="8XM-18-shD">
+                        <barButtonItem key="leftBarButtonItem" image="menu.png" id="8XM-18-shD">
                             <connections>
                                 <action selector="menuButtonClick:" destination="vXZ-lx-hvc" id="p2o-W2-9zy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="refresh.png" id="CNj-pd-jzR">
+                            <connections>
+                                <action selector="refreshClick:" destination="vXZ-lx-hvc" id="Mm5-C7-Qgh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -75,6 +80,7 @@
                                                     <rect key="frame" x="260" y="0.0" width="60" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <state key="normal" title="Accept">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -84,6 +90,7 @@
                                                     <rect key="frame" x="260" y="30" width="60" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <state key="normal" title="Deny">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -117,7 +124,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Friends Requests" id="UGj-95-DfF">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="BQs-6l-VLk">
+                        <barButtonItem key="leftBarButtonItem" image="menu.png" id="BQs-6l-VLk">
                             <connections>
                                 <action selector="menuButtonClick:" destination="VQf-Qq-XbM" id="y8c-Os-vPn"/>
                             </connections>
@@ -153,6 +160,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5AV-G6-bjm">
                                 <rect key="frame" x="20" y="125" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Send">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -165,7 +174,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Friend" id="gfj-q7-HVF">
                         <barButtonItem key="backBarButtonItem" title="Back" id="07D-uG-E5p"/>
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="Ide-Vs-lpk">
+                        <barButtonItem key="leftBarButtonItem" image="menu.png" id="Ide-Vs-lpk">
                             <connections>
                                 <action selector="menuButtonClick:" destination="Acv-s0-6Dx" id="Xue-sX-GVh"/>
                             </connections>
@@ -184,29 +193,135 @@
             <objects>
                 <viewController id="aai-W7-bbI" customClass="MFSettingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Pa-ER-kaD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wog-bg-oEC">
-                                <rect key="frame" x="129" y="136" width="63" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rNl-MJ-z6t">
+                                <rect key="frame" x="36" y="72" width="249" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Delete Profile">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteProfileButtonClick:" destination="aai-W7-bbI" eventType="touchUpInside" id="hxf-38-lJx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ePj-hZ-dQa">
+                                <rect key="frame" x="36" y="20" width="249" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Change Password">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="changePasswordButtonClick:" destination="aai-W7-bbI" eventType="touchUpInside" id="6hp-K3-eaL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Settings" id="rC3-Y5-2BM">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="fRd-nl-9F1">
+                        <barButtonItem key="leftBarButtonItem" image="menu.png" id="fRd-nl-9F1">
                             <connections>
                                 <action selector="menuButtonClick:" destination="aai-W7-bbI" id="5bM-pn-dHO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="us3-QH-VoO" kind="modal" identifier="deleteProfileSegue" id="Zrh-90-uoj"/>
+                        <segue destination="9bN-wa-fbo" kind="push" identifier="changePasswordSegue" id="WjV-Ct-D07"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X5J-6j-ie9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2979" y="3587"/>
+        </scene>
+        <!--Change Password View Controller - Change Password-->
+        <scene sceneID="o2S-Br-wAD">
+            <objects>
+                <viewController id="9bN-wa-fbo" customClass="MFChangePasswordViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mqs-hH-ark">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm new password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="djb-ZY-Jb2">
+                                <rect key="frame" x="25" y="178" width="152" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Old password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="89i-dU-5bL">
+                                <rect key="frame" x="25" y="75" width="92" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6HQ-Uo-Dsq">
+                                <rect key="frame" x="25" y="126" width="98" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="**************" minimumFontSize="17" id="tqJ-C7-sjk">
+                                <rect key="frame" x="25" y="91" width="270" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Qfo-i9-NvX" id="9y8-gf-m7b"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="**************" minimumFontSize="17" id="6xl-cB-9CO">
+                                <rect key="frame" x="25" y="142" width="270" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Qfo-i9-NvX" id="HFU-08-9kl"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="**************" minimumFontSize="17" id="iaa-Lw-JV0">
+                                <rect key="frame" x="25" y="194" width="270" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Qfo-i9-NvX" id="JV7-gd-Yai"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eS0-CQ-isS">
+                                <rect key="frame" x="25" y="240" width="270" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Confirm">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmButtonClick:" destination="9bN-wa-fbo" eventType="touchUpInside" id="17N-dG-2yE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Change Password" id="iGv-Bm-BXH"/>
+                    <connections>
+                        <outlet property="confirmTextField" destination="iaa-Lw-JV0" id="rFX-BC-Vrl"/>
+                        <outlet property="oldTextField" destination="tqJ-C7-sjk" id="q5c-6c-jgi"/>
+                        <outlet property="passwordTextField" destination="6xl-cB-9CO" id="LwZ-ew-9wx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JGJ-Tg-2JQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3555" y="3587"/>
         </scene>
         <!--Login View Controller - Login-->
         <scene sceneID="4eB-PC-3Yp">
@@ -243,7 +358,7 @@
                                 <rect key="frame" x="28" y="117" width="265" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -255,7 +370,7 @@
                                 <rect key="frame" x="28" y="159" width="265" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Register">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -508,7 +623,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="My Friends" id="CT6-iG-5AH">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="RlR-5i-qo0">
+                        <barButtonItem key="leftBarButtonItem" image="menu.png" id="RlR-5i-qo0">
                             <connections>
                                 <action selector="menuButtonClick:" destination="cGI-Io-ka0" id="Nip-4y-CLx"/>
                             </connections>
@@ -587,9 +702,14 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="My Invitations" id="ho8-Bb-8pC">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="QNa-Fr-lqt">
+                        <barButtonItem key="leftBarButtonItem" image="menu.png" id="QNa-Fr-lqt">
                             <connections>
                                 <action selector="menuButtonClick:" destination="wcZ-iJ-dtP" id="WzY-TG-LVO"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="BHa-zT-88A">
+                            <connections>
+                                <action selector="editButtonClick:" destination="wcZ-iJ-dtP" id="vHg-JB-Rbo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -643,7 +763,6 @@
                                         </state>
                                         <connections>
                                             <action selector="backgroundClick:" destination="Qfo-i9-NvX" eventType="touchUpInside" id="1he-oX-Dim"/>
-                                            <segue destination="c0k-5Y-nZ7" kind="push" identifier="confirmSegue" id="FzN-0B-TVa"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password confirmation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cRu-f5-I8W">
@@ -737,11 +856,12 @@
                         <outlet property="passwordLabel" destination="VBI-zG-QPe" id="Uje-FB-wqf"/>
                         <outlet property="registerButton" destination="cTy-OV-ViV" id="IeL-Uu-AjT"/>
                         <outlet property="scrollView" destination="E2g-cd-guk" id="Sys-DA-UrL"/>
+                        <segue destination="c0k-5Y-nZ7" kind="push" identifier="confirmSegue" id="j5g-kI-4Qf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LIR-r3-s3J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1910" y="767"/>
+            <point key="canvasLocation" x="1904" y="723"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bC5-OP-h3r">
@@ -817,6 +937,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="menu.png" width="32" height="32"/>
+        <image name="refresh.png" width="32" height="32"/>
         <image name="settings.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -825,7 +947,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="w8F-as-Cu1"/>
         <segue reference="2Xo-x1-V4L"/>
+        <segue reference="w8F-as-Cu1"/>
     </inferredMetricsTieBreakers>
 </document>

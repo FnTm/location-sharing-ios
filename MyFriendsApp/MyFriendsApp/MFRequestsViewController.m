@@ -32,15 +32,17 @@
     
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN] forKey:MF_TOKEN];
+    Spinner *spinner = [Spinner new];
+    [spinner showInView:self.view];
     
     [[MFRequest alloc] do:@"allFriends" withParams:dict onSuccess:^(NSDictionary *result) {
         NSLog(@"%@", result);
         self.dataArray = [result objectForKey:@"inviting_friends"];
-        NSLog(@"dataArray:%@", self.dataArray);
         [mainTableView reloadData];
+        [spinner close];
     } onFailure:^(NSDictionary *result) {
         NSLog(@"%@", result);
-        
+        [spinner close];
     }];
 	
 }
@@ -75,7 +77,8 @@
 }
 -(IBAction)denyClick:(id)sender{
    UIButton *b = (UIButton *)sender;
-    NSLog(@"tag:%i", b.tag);
+    Spinner *spinner = [Spinner new];
+    [spinner showInView:self.view];
     
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [dict setObject:[[self.dataArray objectAtIndex:b.tag-200] valueForKey:@"id"] forKey:@"id"];
@@ -88,30 +91,32 @@
             [self.dataArray removeObjectAtIndex:b.tag-200];
             [mainTableView reloadData];
         }
+        [spinner close];
     } onFailure:^(NSDictionary *result) {
         NSLog(@"%@", result);
-        
+        [spinner close];
     }];
 
 }
 -(IBAction)acceptClick:(id)sender{
     UIButton *b = (UIButton *)sender;
-    NSLog(@"tag2:%i", b.tag);
+    Spinner *spinner = [Spinner new];
+    [spinner showInView:self.view];
     
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [dict setObject:[[self.dataArray objectAtIndex:b.tag-400] valueForKey:@"id"] forKey:@"id"];
     NSDictionary *dict2 = [NSDictionary dictionaryWithObject:[[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN] forKey:MF_TOKEN];
     [dict setObject:dict2 forKey:@"token"];
-    NSLog(@"dict:%@", dict);
     [[MFRequest alloc] do:@"acceptFriendship" withParams:dict onSuccess:^(NSDictionary *result) {
         NSLog(@"%@", result);
         if ([[result valueForKey:@"success"] integerValue]==1) {
             [self.dataArray removeObjectAtIndex:b.tag-400];
             [mainTableView reloadData];
         }
+        [spinner close];
     } onFailure:^(NSDictionary *result) {
         NSLog(@"%@", result);
-        
+        [spinner close];
     }];
 
     

@@ -8,6 +8,8 @@
 
 #import "MFConfirmViewController.h"
 #import "MFRequest.h"
+#import "Reachability.h"
+#import "MFAppDelegate.h"
 
 @interface MFConfirmViewController ()
 
@@ -41,14 +43,26 @@
 }
 
 - (IBAction)confirmClick:(id)sender {
-    if ([self.codeTextField.text length]<7) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Par maz simbolu" delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
+    MFAppDelegate *appDelegate = (MFAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if (appDelegate.internetReachability.currentReachabilityStatus == NotReachable) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Problēmas ar interneta savienojumu." delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
         [alert show];
     }else{
-        [self loadData];
+        if ([self.codeTextField.text length]<7) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Par maz simbolu" delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
+            [alert show];
+        }else{
+            [self loadData];
+        }
     }
+    
+    
 }
 -(void)loadData{
+    Spinner *spinner = [Spinner new];
+    [spinner showInView:self.view];
+    
     NSDictionary *dict = [NSDictionary dictionaryWithObject:self.codeTextField.text forKey:@"confirmation_token"];
     [self.confirmButton setEnabled:NO];
     [[MFRequest alloc] do:@"confirmCode" withParams:dict onSuccess:^(NSDictionary *result) {
@@ -57,11 +71,15 @@
         if ([[result valueForKey:@"success"] integerValue] == 1) {
             [self performSegueWithIdentifier:@"backToLoginSegue" sender:self];
         }
-        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Neizdevās nosūtīt datus" delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
+        [alert show];
+        [spinner close];
     } onFailure:^(NSDictionary *result) {
         [self.confirmButton setEnabled:YES];
         NSLog(@"%@", result);
-        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Neizdevās nosūtīt datus" delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
+        [alert show];
+        [spinner close];
     }];
 
 }

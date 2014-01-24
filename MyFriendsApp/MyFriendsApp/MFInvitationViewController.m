@@ -38,19 +38,32 @@
 }
 
 - (IBAction)inviteButtonClick:(id)sender {
-    UIAlertView *alert;
-    if (_textField.text.length < 4) {
-        alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Bad input data!" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
-        
+    MFAppDelegate *appDelegate = (MFAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if (appDelegate.internetReachability.currentReachabilityStatus == NotReachable) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Problēmas ar interneta savienojumu." delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
+        [alert show];
     }else{
-        [self sendData];
-        
-       // alert = [[UIAlertView alloc] initWithTitle:@"Invitation has been sent!" message:@"Invitation has been sent!" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
-       // _textField.text = @"";
+        UIAlertView *alert;
+        if (_textField.text.length < 4) {
+            alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Bad input data!" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+            
+        }else{
+            [self sendData];
+            
+            // alert = [[UIAlertView alloc] initWithTitle:@"Invitation has been sent!" message:@"Invitation has been sent!" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+            // _textField.text = @"";
+        }
+        [alert show];
     }
-    [alert show];
+    
+    
+    
 }
 -(void)sendData{
+    Spinner *spinner = [Spinner new];
+    [spinner showInView:self.view];
+    
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [dict setObject:_textField.text forKey:@"email"];
     [dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN] forKey:MF_TOKEN];
@@ -58,12 +71,17 @@
     [[MFRequest alloc] do:@"invite" withParams:dict onSuccess:^(NSDictionary *result) {
         NSLog(@"%@", result);
         if ([[result valueForKey:@"success"] integerValue] == 1) {
-            
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Paziņojums" message:@"Uzaicinājums veiksmīgi nosūtīts" delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
+            [alert show];
+            self.textField.text = @"";
+        }else{
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Neizdevās nosūtīt uzaicinājumu" delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
+            [alert show];
         }
-        
+        [spinner close];
     } onFailure:^(NSDictionary *result) {
         NSLog(@"%@", result);
-        
+        [spinner close];
     }];
 
 }
@@ -72,7 +90,7 @@
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
-    NSLog(@"beidz");
+  
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self inviteButtonClick:self];

@@ -20,5 +20,6 @@
 
 - (IBAction)menuButtonClick:(id)sender;
 
+- (IBAction)refreshClick:(id)sender;
 
 @end

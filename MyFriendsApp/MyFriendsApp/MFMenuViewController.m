@@ -11,6 +11,7 @@
 #import "MFMenuCell.h"
 #import "IIViewDeckController.h"
 #import "MFRequest.h"
+#import "MFAppDelegate.h"
 
 @interface MFMenuViewController ()
 
@@ -140,6 +141,9 @@
         [self performSegueWithIdentifier:@"logoutSegue" sender:self];
         
     }else{
+        Spinner *spinner = [Spinner new];
+        [spinner showInView:self.view];
+        
         NSMutableDictionary *dict = [NSMutableDictionary new];
         [dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN] forKey:MF_TOKEN];
         
@@ -148,15 +152,27 @@
          
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:MF_TOKEN];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            
+            if ([[result valueForKey:@"success"] integerValue] == 1) {
+               
+            }
             NSLog(@"top:%@", [[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN]);
             if ([result valueForKey:@"errors"]) {
                 NSLog(@"kļūda");
             }
+            [spinner close];
+            MFAppDelegate *appDelegate = (MFAppDelegate*)[[UIApplication sharedApplication] delegate];
+            if (appDelegate.isUpdating) {
+                [appDelegate stopUpdating];
+            }
             [self performSegueWithIdentifier:@"logoutSegue" sender:self];
         } onFailure:^(NSDictionary *result) {
             NSLog(@"%@", result);
-            
+            [spinner close];
+            MFAppDelegate *appDelegate = (MFAppDelegate*)[[UIApplication sharedApplication] delegate];
+            if (appDelegate.isUpdating) {
+                [appDelegate stopUpdating];
+            }
+            [self performSegueWithIdentifier:@"logoutSegue" sender:self];
         }];
 
     }

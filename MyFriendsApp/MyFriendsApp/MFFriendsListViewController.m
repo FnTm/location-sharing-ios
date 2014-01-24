@@ -33,17 +33,20 @@
 {
     [super viewDidLoad];
     
+    Spinner *spinner = [Spinner new];
+    [spinner showInView:self.view];
+    
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN] forKey:MF_TOKEN];
     
     [[MFRequest alloc] do:@"allFriends" withParams:dict onSuccess:^(NSDictionary *result) {
         NSLog(@"%@", result);
         self.dataArray = [result objectForKey:@"friends"];
-        NSLog(@"dataArray:%@", self.dataArray);
         [friendsTableView reloadData];
+        [spinner close];
     } onFailure:^(NSDictionary *result) {
         NSLog(@"%@", result);
-        
+        [spinner close];
     }];
 
     

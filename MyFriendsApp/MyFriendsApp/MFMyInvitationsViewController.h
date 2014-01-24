@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MFMyInvitationsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
+@interface MFMyInvitationsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>{
     IBOutlet UITableView *mainTableView;
+    int deleteItem;
 }
 - (IBAction)menuButtonClick:(id)sender;
+- (IBAction)editButtonClick:(id)sender;
 @property(nonatomic, strong) NSMutableArray *dataArray;
 @property (weak, nonatomic) IBOutlet UILabel *noDataLabel;
 

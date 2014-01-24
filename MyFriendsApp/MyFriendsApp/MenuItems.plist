@@ -22,13 +22,13 @@
 	</dict>
 	<dict>
 		<key>image</key>
-		<string>add.png</string>
+		<string>invitations.png</string>
 		<key>title</key>
 		<string>My Invitations</string>
 	</dict>
     <dict>
 		<key>image</key>
-		<string>add.png</string>
+		<string>group.png</string>
 		<key>title</key>
 		<string>Friend Requests</string>
 	</dict>

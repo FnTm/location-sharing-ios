@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1A0FB06E188C1CD10050B8CE /* MFRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0FB06D188C1CD10050B8CE /* MFRequest.m */; };
+		1A4A35D3189194100091E57C /* Spinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A35D2189194100091E57C /* Spinner.m */; };
+		1A4A35D9189196B40091E57C /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A4A35D8189196B40091E57C /* refresh.png */; };
+		1A4A35DD1891B89F0091E57C /* MFChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A35DC1891B89F0091E57C /* MFChangePasswordViewController.m */; };
+		1A4A35E11891C7CE0091E57C /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A4A35E01891C7CE0091E57C /* menu.png */; };
+		1A4A35E31891CC6C0091E57C /* invitations.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A4A35E21891CC6C0091E57C /* invitations.png */; };
+		1A4A35E91891E23A0091E57C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A35E81891E23A0091E57C /* Reachability.m */; };
+		1A4A35EB1891E2860091E57C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4A35EA1891E2860091E57C /* SystemConfiguration.framework */; };
 		1A8582B4183A3534009BB47B /* MFFriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8582B3183A3534009BB47B /* MFFriendsListViewController.m */; };
 		1A8582B8183A3635009BB47B /* MFSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8582B7183A3635009BB47B /* MFSettingsViewController.m */; };
 		1A8582BB183A3909009BB47B /* MFFriendsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8582BA183A3909009BB47B /* MFFriendsCell.m */; };
@@ -69,6 +76,16 @@
 /* Begin PBXFileReference section */
 		1A0FB06C188C1CD10050B8CE /* MFRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFRequest.h; sourceTree = "<group>"; };
 		1A0FB06D188C1CD10050B8CE /* MFRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRequest.m; sourceTree = "<group>"; };
+		1A4A35CF189193F70091E57C /* Spinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spinner.h; sourceTree = "<group>"; };
+		1A4A35D2189194100091E57C /* Spinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spinner.m; sourceTree = "<group>"; };
+		1A4A35D8189196B40091E57C /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
+		1A4A35DB1891B89F0091E57C /* MFChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFChangePasswordViewController.h; sourceTree = "<group>"; };
+		1A4A35DC1891B89F0091E57C /* MFChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFChangePasswordViewController.m; sourceTree = "<group>"; };
+		1A4A35E01891C7CE0091E57C /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		1A4A35E21891CC6C0091E57C /* invitations.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invitations.png; sourceTree = "<group>"; };
+		1A4A35E71891E23A0091E57C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		1A4A35E81891E23A0091E57C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		1A4A35EA1891E2860091E57C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1A8582B2183A3534009BB47B /* MFFriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFFriendsListViewController.h; sourceTree = "<group>"; };
 		1A8582B3183A3534009BB47B /* MFFriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFFriendsListViewController.m; sourceTree = "<group>"; };
 		1A8582B6183A3635009BB47B /* MFSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSettingsViewController.h; sourceTree = "<group>"; };
@@ -141,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A4A35EB1891E2860091E57C /* SystemConfiguration.framework in Frameworks */,
 				1A905108180EEC6D0041C68E /* MapKit.framework in Frameworks */,
 				1A905106180EEC610041C68E /* CoreLocation.framework in Frameworks */,
 				1A9050D3180EEC3B0041C68E /* CoreGraphics.framework in Frameworks */,
@@ -162,6 +180,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A4A35DA1891B8830091E57C /* ChangePasswordViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1A4A35DB1891B89F0091E57C /* MFChangePasswordViewController.h */,
+				1A4A35DC1891B89F0091E57C /* MFChangePasswordViewController.m */,
+			);
+			name = ChangePasswordViewController;
+			sourceTree = "<group>";
+		};
 		1A8582B1183A3507009BB47B /* FriendsListViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +229,7 @@
 		1A9050CF180EEC3B0041C68E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1A4A35EA1891E2860091E57C /* SystemConfiguration.framework */,
 				1A905107180EEC6D0041C68E /* MapKit.framework */,
 				1A905105180EEC610041C68E /* CoreLocation.framework */,
 				1A9050D0180EEC3B0041C68E /* Foundation.framework */,
@@ -234,6 +262,9 @@
 				1A8582C1183A525C009BB47B /* logout.png */,
 				1A8582C8183A62BB009BB47B /* settings.png */,
 				1A8582C9183A62BB009BB47B /* settings@2x.png */,
+				1A4A35E01891C7CE0091E57C /* menu.png */,
+				1A4A35E21891CC6C0091E57C /* invitations.png */,
+				1A4A35D8189196B40091E57C /* refresh.png */,
 				1A8582D0183A6716009BB47B /* group@2x.png */,
 				1A8582D1183A6716009BB47B /* group.png */,
 				1A8582C4183A52D9009BB47B /* settings.png */,
@@ -282,9 +313,13 @@
 		1A90510A180EEF0F0041C68E /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				1A4A35CF189193F70091E57C /* Spinner.h */,
+				1A4A35D2189194100091E57C /* Spinner.m */,
 				1ADB3382183404FC004EAE11 /* IIViewDeckController.h */,
 				1ADB3383183404FC004EAE11 /* IIViewDeckController.m */,
 				1ADB3384183404FC004EAE11 /* WrapController.h */,
+				1A4A35E71891E23A0091E57C /* Reachability.h */,
+				1A4A35E81891E23A0091E57C /* Reachability.m */,
 				1ADB3385183404FC004EAE11 /* WrapController.m */,
 				1A90510E180EEFA40041C68E /* MFPerson.h */,
 				1A90510F180EEFA40041C68E /* MFPerson.m */,
@@ -301,6 +336,7 @@
 		1A905117180F15130041C68E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1A4A35DA1891B8830091E57C /* ChangePasswordViewController */,
 				1AB7E015188EDEE6000FA403 /* MyInvitationsViewController */,
 				1AB7E011188EDEC1000FA403 /* RequestsViewController */,
 				1AB7E00D188EBAE3000FA403 /* ConfirmViewController */,
@@ -435,6 +471,14 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Aigars Malisevs";
 				TargetAttributes = {
+					1A9050CC180EEC3B0041C68E = {
+						DevelopmentTeam = 32PHZ73ZE6;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					1A9050ED180EEC3B0041C68E = {
 						TestTargetID = 1A9050CC180EEC3B0041C68E;
 					};
@@ -467,8 +511,10 @@
 				1A8582CA183A62BB009BB47B /* settings.png in Resources */,
 				1A8582D3183A6716009BB47B /* group.png in Resources */,
 				1A8582CB183A62BB009BB47B /* settings@2x.png in Resources */,
+				1A4A35D9189196B40091E57C /* refresh.png in Resources */,
 				1A8582C2183A525C009BB47B /* logout@2x.png in Resources */,
 				1A9050E9180EEC3B0041C68E /* Images.xcassets in Resources */,
+				1A4A35E11891C7CE0091E57C /* menu.png in Resources */,
 				1A8582BE183A503B009BB47B /* home_icon.png in Resources */,
 				1A905114180F12A00041C68E /* arrest.png in Resources */,
 				1A8582D2183A6716009BB47B /* group@2x.png in Resources */,
@@ -477,6 +523,7 @@
 				1A905116180F14090041C68E /* greenDot.png in Resources */,
 				1ADB3390183415EC004EAE11 /* MenuItems.plist in Resources */,
 				1A8582C3183A525C009BB47B /* logout.png in Resources */,
+				1A4A35E31891CC6C0091E57C /* invitations.png in Resources */,
 				1A8582CF183A6586009BB47B /* add@2x.png in Resources */,
 				1A9050E4180EEC3B0041C68E /* Main.storyboard in Resources */,
 				1A905112180F11F20041C68E /* redDot.png in Resources */,
@@ -505,16 +552,19 @@
 				1A8582B4183A3534009BB47B /* MFFriendsListViewController.m in Sources */,
 				1ADB338B18340584004EAE11 /* MFMenuViewController.m in Sources */,
 				1ADB3387183404FC004EAE11 /* WrapController.m in Sources */,
+				1A4A35DD1891B89F0091E57C /* MFChangePasswordViewController.m in Sources */,
 				1AB7E010188EBAF9000FA403 /* MFConfirmViewController.m in Sources */,
 				1A8582B8183A3635009BB47B /* MFSettingsViewController.m in Sources */,
 				1AB7E014188EDEE2000FA403 /* MFRequestsViewController.m in Sources */,
 				1A8582BB183A3909009BB47B /* MFFriendsCell.m in Sources */,
 				1A0FB06E188C1CD10050B8CE /* MFRequest.m in Sources */,
+				1A4A35E91891E23A0091E57C /* Reachability.m in Sources */,
 				1ADB3386183404FC004EAE11 /* IIViewDeckController.m in Sources */,
 				1A9050DD180EEC3B0041C68E /* main.m in Sources */,
 				1A9050E7180EEC3B0041C68E /* MFViewController.m in Sources */,
 				1A9050E1180EEC3B0041C68E /* MFAppDelegate.m in Sources */,
 				1AB7E00C188EA7CC000FA403 /* MFRegisterViewController.m in Sources */,
+				1A4A35D3189194100091E57C /* Spinner.m in Sources */,
 				1A905110180EEFA40041C68E /* MFPerson.m in Sources */,
 				1ADB33771832B084004EAE11 /* MFLoginViewController.m in Sources */,
 				1AB7E018188EDF09000FA403 /* MFMyInvitationsViewController.m in Sources */,

@@ -159,6 +159,42 @@
         [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
         connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         
+    }else if([action isEqualToString:@"sendLocation"]){
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://54.194.30.63:3000/api/v1/users/13/location"]];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        NSError *error = nil;
+        NSData *postData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&error];
+        
+        NSString *postString=[[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
+        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+        connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        
+    }else if([action isEqualToString:@"deleteProfile"]){
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://54.194.30.63:3000/api/v1/users/12/"]];
+        [request setHTTPMethod:@"DELETE"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        NSError *error = nil;
+        NSData *postData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&error];
+        
+        NSString *postString=[[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
+        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+        connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        
+    }else if([action isEqualToString:@"changePassword"]){
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://54.194.30.63:3000/api/v1/users/12/"]];
+        [request setHTTPMethod:@"PUT"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        NSError *error = nil;
+        NSData *postData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&error];
+        
+        NSString *postString=[[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
+        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+        connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        
     }
 
     

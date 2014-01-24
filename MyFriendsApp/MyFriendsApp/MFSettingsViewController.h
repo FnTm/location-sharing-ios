@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MFSettingsViewController : UIViewController<UINavigationBarDelegate, UINavigationControllerDelegate>
+@interface MFSettingsViewController : UIViewController<UINavigationBarDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
 - (IBAction)menuButtonClick:(id)sender;
+- (IBAction)changePasswordButtonClick:(id)sender;
+- (IBAction)deleteProfileButtonClick:(id)sender;
 
 @end

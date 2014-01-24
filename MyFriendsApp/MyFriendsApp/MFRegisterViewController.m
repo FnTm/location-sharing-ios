@@ -61,18 +61,30 @@
     }
 }
 - (IBAction)registerClick:(id)sender {
-    if ([self.passwordLabel.text length]<1 || [self.confirmLabel.text length]<1 || [self.emailLabel.text length]<1 || [self.nameLabel.text length]<1) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Atstāti tukši lauki" delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
-        [alert show];
-    }else if (![self.passwordLabel.text isEqualToString:self.confirmLabel.text]){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Paroles nesakrīt" delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
+    MFAppDelegate *appDelegate = (MFAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if (appDelegate.internetReachability.currentReachabilityStatus == NotReachable) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Problēmas ar interneta savienojumu." delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
         [alert show];
     }else{
-        [self sendData];
+        if ([self.passwordLabel.text length]<1 || [self.confirmLabel.text length]<1 || [self.emailLabel.text length]<1 || [self.nameLabel.text length]<1) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Atstāti tukši lauki" delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
+            [alert show];
+        }else if (![self.passwordLabel.text isEqualToString:self.confirmLabel.text]){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Paroles nesakrīt" delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
+            [alert show];
+        }else{
+            [self sendData];
+        }
     }
+    
+    
 }
 -(void)sendData{
     [self.registerButton setEnabled:NO];
+    
+    Spinner *spinner = [Spinner new];
+    [spinner showInView:self.view];
     
     NSMutableDictionary *dict = [NSMutableDictionary new];
     NSDictionary *subDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:self.emailLabel.text, self.passwordLabel.text, self.confirmLabel.text, self.nameLabel.text, nil] forKeys:@[@"email", @"password", @"password_confirmation",@"name"]];
@@ -82,17 +94,20 @@
         [self.registerButton setEnabled:YES];
         NSLog(@"%@", result);
         if ([[result valueForKey:@"success"] integerValue] == 1) {
+            self.emailLabel.text = self.passwordLabel.text = self.confirmLabel.text = self.nameLabel.text = @"";
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Informācija" message:@"Uz Jūsu epastu tika aizsūta apstiprinājuma vētsule. Apstipriniet no epasta vai ievadiet kodu." delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
+            [alert show];
             [self performSegueWithIdentifier:@"confirmSegue" sender:self];
         }else{
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Neizdevās reģistrēties" delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
             [alert show];
         }
-        
+        [spinner close];
     } onFailure:^(NSDictionary *result) {
         [self.registerButton setEnabled:YES];
         NSLog(@"%@", result);
-        
+        [spinner close];        
     }];
 
 }

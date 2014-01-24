@@ -33,12 +33,21 @@
 }
 
 - (IBAction)loginClick:(id)sender {
-    if ([usernameLabel.text length]<3 || [passwordLabel.text length]<3) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Nederīgi ievaddati" delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
+    MFAppDelegate *appDelegate = (MFAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if (appDelegate.internetReachability.currentReachabilityStatus == NotReachable) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Problēmas ar interneta savienojumu." delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
         [alert show];
     }else{
-        [self sendLoginInformation];
+        if ([usernameLabel.text length]<3 || [passwordLabel.text length]<3) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problēma" message:@"Nederīgi ievaddati" delegate:self cancelButtonTitle:@"Labi" otherButtonTitles:nil];
+            [alert show];
+        }else{
+            [self sendLoginInformation];
+        }
     }
+    
+    
 }
 
 - (IBAction)registerClick:(id)sender {
@@ -50,6 +59,10 @@
     [usernameLabel resignFirstResponder];
 }
 -(void)sendLoginInformation{
+   
+    Spinner *spinner = [Spinner new];
+    [spinner showInView:self.view];
+    
     NSMutableDictionary *dict = [NSMutableDictionary new];
     NSDictionary *subDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:usernameLabel.text, passwordLabel.text, nil] forKeys:@[@"email", @"password"]];
     [dict setObject:subDict forKey:@"user"];
@@ -61,10 +74,10 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
             [self performSegueWithIdentifier:@"loginSegue" sender:self];
         }
-        
+        [spinner close];
     } onFailure:^(NSDictionary *result) {
         NSLog(@"%@", result);
-        
+        [spinner close];
     }];
 
 }

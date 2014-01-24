@@ -10,6 +10,7 @@
 #import "MFPerson.h"
 #import "IIViewDeckController.h"
 #import "MFMenuViewController.h"
+#import "MFAppDelegate.h"
 
 @interface MFViewController ()
 
@@ -20,12 +21,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     if (self.displayPerson != nil) {
         [self loadSelected];
     }else{
         [self loadData];
     }
-   
+    MFAppDelegate *appDelegate = (MFAppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (!appDelegate.isUpdating) {
+        [appDelegate startNavigate];
+    }
 }
 -(void)loadSelected{
     dataArray = [NSMutableArray new];
@@ -35,7 +40,8 @@
 -(void)loadData{
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:MF_TOKEN] forKey:MF_TOKEN];
-    
+    Spinner *spinner = [Spinner new];
+    [spinner showInView:self.view];
     [[MFRequest alloc] do:@"allFriends" withParams:dict onSuccess:^(NSDictionary *result) {
         NSLog(@"%@", result);
         if ([[result valueForKey:@"errors"] count] < 1) {
@@ -43,7 +49,6 @@
             NSArray *arr = [result objectForKey:@"friends"];
             for (NSDictionary *object in arr) {
                 if ([object valueForKey:@"latitude"]!=[NSNull null] && [object valueForKey:@"longitude"]!=[NSNull null]) {
-                    NSLog(@"%f",[[object valueForKey:@"latitude"] floatValue]);
                     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[object valueForKey:@"latitude"] floatValue], [[object valueForKey:@"longitude"] floatValue]);
                     MFPerson *person = [[MFPerson alloc] initWithName:[object valueForKey:@"name"] email:[object valueForKey:@"email"] coordinate:coord];
                     [dataArray addObject:person];
@@ -52,10 +57,10 @@
 
             [self plotPositions];
         }
-        
+        [spinner close];
     } onFailure:^(NSDictionary *result) {
         NSLog(@"%@", result);
-        
+        [spinner close];
     }];
 }
 - (void)didReceiveMemoryWarning
@@ -66,6 +71,10 @@
 
 - (IBAction)menuButtonClick:(id)sender {
     [self.viewDeckController toggleLeftView];
+}
+
+- (IBAction)refreshClick:(id)sender {
+    [self loadData];
 }
 
 - (void)plotPositions{
@@ -109,56 +118,5 @@
     
     return nil;
 }
--(void)writeSelectedToArray{
-    tmpDataArray = [[NSMutableArray alloc] init];
-    [tmpDataArray addObject:displayPerson];
-}
 
--(void)writeDataToTmpDataArray{
-    tmpDataArray = [[NSMutableArray alloc] init];
-    
-    MFPerson *person = [MFPerson new];
-  
-    person.name = @"Aigars Mališevs";
-    person.email = @"aigarsmalisevs@gmail.com";
-    CLLocationCoordinate2D cord;
-    cord.latitude = 56.930323;
-    cord.longitude = 24.015416;
-    person.coordinate = cord;
-    [tmpDataArray addObject:person];
-    
-    person = [MFPerson new];
-    person.name = @"Aigars Znotiņš";
-    person.email = @"aigars.znotins@gmail.com";
-    cord.latitude = 57.075629;
-    cord.longitude = 24.334524;
-    person.coordinate =cord;
-    [tmpDataArray addObject:person];
-    
-    person = [MFPerson new];
-    person.name = @"Klāvs Taube";
-    person.email = @"klavs.taube@gmail.com";
-    cord.latitude = 56.950670;
-    cord.longitude = 24.103698;
-    person.coordinate = cord;
-    [tmpDataArray addObject:person];
-    
-    person = [MFPerson new];
-    person.name = @"Jānis Pūgulis";
-    person.email = @"janis.pugulis@gmail.com";
-    cord.latitude = 56.923923;
-    cord.longitude = 24.063621;
-    person.coordinate = cord;
-    [tmpDataArray addObject:person];
-    
-    person = [MFPerson new];
-    person.name = @"Jānis Peisenieks";
-    person.email = @"janis.pugulis@gmail.com";
-    cord.latitude = 56.969416;
-    cord.longitude = 24.122329;
-    person.coordinate = cord;
-    [tmpDataArray addObject:person];
-   
-    
-}
 @end
